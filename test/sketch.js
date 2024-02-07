@@ -8,7 +8,7 @@ let white;
 
 
 function setup() {
-  createCanvas(1000, 700);
+  createCanvas(600, 600);
   selectedColor = color('white');
   x = width / 2;
   y = height / 2;
