@@ -23,7 +23,8 @@ function setup() {
     new Face(0,180,color('magenta')),
     new Face(0,210,color('#89493B')),
     new Face(0,240,color('white')),
-    new Face(0,270,color('black'))];
+    new Face(0,270,color('black')),
+    new Face(0,270,color('grey'))];
 }
 
 function draw() {
