@@ -129,3 +129,104 @@ function keyTypedOld() {
       
   }
 }
+
+function timer() {
+  gameTime = int((millis() - playTime) / 1000);
+  if (gameTime > 30) {
+    timerIsDone = true;
+  }
+  return gameTime;
+}
+
+function walls() {
+  topWall = new Sprite(width / 2, -150, width, 30);
+  bottomWall = new Sprite(width / 2, height + 150, width, 30);
+  leftWall = new Sprite(-150, height / 2, 30, height);
+  rightWall = new Sprite(width + 150, height / 2, 30, height);
+  
+  topWall.collider = "static";
+  bottomWall.collider = "static";
+  leftWall.collider = "static";
+  rightWall.collider = "static";
+}
+
+
+function startScreen() {
+  push();
+  fill("gray");
+  stroke(0);
+  strokeWeight(5);
+  rect(width / 2 - 300, height / 2 - 100, 600, 200);
+
+  noStroke();
+  fill(0);
+  textAlign(CENTER);
+  textSize(25);
+  text(
+    `Click the bugs to clear the Infestation\nClick as many as you can in 30 seconds!\nGood Luck!`,
+    width / 2,
+    height / 2 - 30
+  );
+  pop();
+}
+
+function endScreen() {
+  push();
+  fill("gray");
+  stroke(0);
+  strokeWeight(5);
+  rect(width / 2 - 300, height / 2 - 100, 600, 200);
+
+  noStroke();
+  fill(0);
+  textAlign(CENTER);
+  textSize(25);
+  text(
+    `Time is up!\nYou squished ${score} bugs!\nPress RETURN to play again!`,
+    width / 2,
+    height / 2 - 30
+  );
+  pop();
+}
+
+function timer() {
+  gameTime = int((millis() - playTime) / 1000);
+  if (gameTime > 30) {
+    timerIsDone = true;
+  }
+  return gameTime;
+}
+
+function teleTop(item){
+  item.y = -100;
+  item.rotation = 180;
+  item.move("down", 3, 80000);
+}
+function teleBot(item){
+  item.y = height +100;
+  item.rotation = 0;
+  item.move("up", 3, 80000);
+}
+function teleLeft(item){
+  item.x = -100;
+  item.rotation = 0;
+  item.move("right", 3, 80000);
+}
+function teleRight(item){
+  item.x = height +100;
+  item.rotation = -90;
+  item.move("left", 3, 80000);
+}
+function squish(item) {
+  if (item.isDead === false) {
+    item.isDead = true;
+    item.ani = "dead";
+    item.vel.x = 0;
+    item.vel.y = 0;
+    item.life = 60;
+    score++;
+  }
+  if (allBugs.size() < 1) {
+    moreBugs(random(5, 50));
+  }
+}
