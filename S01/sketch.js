@@ -45,20 +45,22 @@ function setup() {
   button4.mousePressed(() => sounds.player("Sunshine").start());
 
 
-  delaySlider = createSlider (0, 1, 0, 0, 0.5)
-  delaySlider. position (120, 200)
-  delaySlider.mouseMoved (() => selAmt.delayTime.value = delaySlider.value())
+  delaySlider = createSlider (0, 1, 0, 0.05);
+  delaySlider.position (120, 200);
+  delaySlider.mouseMoved (() => delAmt.delayTime.value = delaySlider.value()); 
 
-  
-  fbSlider = createSlider (0, 1, 0, 0, 0.5)
-  fbSlider. position (120, 200)
-  fbSlider.mouseMoved (() => delAmt.feedback.value = delaySlider.value())
+  fbSlider = createSlider (0, 0.9, 0, 0.05);
+  fbSlider.position (120, 250);
+  fbSlider.mouseMoved (() => delAmt.feedback.value = fbSlider.value ());
 
-  distSlider = createSlider (0, 0.9, 0, 0.05)
-  distSlider.position (120, 300)
-  distSlider.mouseMoved (() => distAmt.distortion.value = delaySlider.value())
+  distSlider = createSlider (0, 0.9, 0, 0.05);
+  distSlider.position (120, 300);
+  distSlider.mouseMoved (() => distAmt.distortion = distSlider.value());
 }
 
 function draw() {
-  background(220);
+  background(50, 200, 200);
+  text ("Add delay", width/3, 235);
+  text ("Add feedback", width/3, 285);
+  text ("Add distortion", width/3, 335);
 }
