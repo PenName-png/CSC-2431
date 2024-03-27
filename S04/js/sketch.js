@@ -10,20 +10,20 @@ let paintColors = [
   [60, 179, 113],
   [0, 128, 128],
   [70, 130, 180],
-  [0, 0, 255], // blue
-  [186, 85, 211], // mediumOrchid
-  [75, 0, 130], // indigo
-  [255, 255, 255], // white
+  [0, 0, 255], 
+  [186, 85, 211], 
+  [75, 0, 130], 
+  [255, 255, 255], 
 ];
 
-let currentColor = [0, 0, 0], // default paint color
-  paintThic = 2, // default brush thickness
-  thickSlider, // slider to adjust thickness
-  exportButton, // button to save an an image
-  c, // the canvas
-  allChangers, // all sprites used for changing colors
-  palletePos = 40, //color horizontal position
-  testSprite, // shows current color as boarder to the screen
+let currentColor = [0, 0, 0], 
+  paintThic = 2, 
+  thickSlider, 
+  exportButton, 
+  c,
+  allChangers, 
+  palletePos = 40, 
+  testSprite, 
   bgMusic,
   seq,
   multiplayer,
