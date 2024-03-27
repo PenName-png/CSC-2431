@@ -85,50 +85,11 @@ class Character {
     this.sprite.changeAni('stand');
   }
   
-  walkRight() {
-    this.sprite.changeAni('walkRight');
-    this.sprite.vel.x = 1;
-    this.sprite.scale.x = 1;
-    this.sprite.vel.y = 0;
-  }
-  
-  walkLeft() {
-    this.sprite.changeAni('walkRight');
-    this.sprite.vel.x = -1;
-    this.sprite.scale.x = -1;
-    this.sprite.vel.y = 0;
-  }
-  
-  walkUp() {
-    this.sprite.changeAni('walkUp');
-    this.sprite.vel.y = -1;
-    this.sprite.vel.x = 0;
-  }
-  
-  walkDown() {
-    this.sprite.changeAni('walkDown');
-    this.sprite.vel.y = 1;
-    this.sprite.vel.x = 0;
-  }
+ 
 }
 
 
 
-function keyTypedOld() {
-  switch(key) {
-    case 'd':
-      walkRight();
-      break;
-    case 'a':
-      walkLeft();
-      break;
-    case 'w':
-      
-      break;
-    case 's':
-      
-  }
-}
 
 function timer() {
   gameTime = int((millis() - playTime) / 1000);
@@ -163,7 +124,7 @@ function startScreen() {
   textAlign(CENTER);
   textSize(25);
   text(
-    `Click the bugs to clear the Infestation\nClick as many as you can in 30 seconds!\nGood Luck!`,
+    `Click to Explode`,
     width / 2,
     height / 2 - 30
   );
@@ -197,26 +158,6 @@ function timer() {
   return gameTime;
 }
 
-function teleTop(item){
-  item.y = -100;
-  item.rotation = 180;
-  item.move("down", 3, 80000);
-}
-function teleBot(item){
-  item.y = height +100;
-  item.rotation = 0;
-  item.move("up", 3, 80000);
-}
-function teleLeft(item){
-  item.x = -100;
-  item.rotation = 0;
-  item.move("right", 3, 80000);
-}
-function teleRight(item){
-  item.x = height +100;
-  item.rotation = -90;
-  item.move("left", 3, 80000);
-}
 function squish(item) {
   if (item.isDead === false) {
     item.isDead = true;

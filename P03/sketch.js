@@ -1,114 +1,57 @@
-let sprite;
-let characters = [];
+// Paint App With Sprites and Audio
+// PDM: Game Design and Audio Programming
+// Code by Matthew A. Bardin [2023]
 
 
-function preload() {
-  let animations = {
-    stand: { row: 0, frames: 1},
-    walkRight: {row: 0, col: 1, frames: 8},
-    walkUp: {row: 5, frames: 6},
-    walkDown: {row: 5, col: 6, frames: 6}
-  };
+// This sketch is a function upgrade of the paint app project found here: https://pdm.lsupathways.org/2_graphics/2_paintapp/4_lesson_4/
+// Functionality is handled with p5.play sprite and the audio processing is handled with tone.js
 
-  characters.push(new Character(100,100,80,80,'assets/red.png',animations));
-  characters.push(new Character(200,200,80,80,'assets/Yellow.png',animations));
-  characters.push(new Character(300,300,80,80,'assets/Cyclops.png',animations));
-}
+let paintColors = [ // all colors in app. all are standard extended web colors
+  [0, 0, 0], // black
+  [220, 20, 60], // crimson
+  [255, 140, 0], // darkOrange
+  [255, 215, 0], // gold
+  [255, 255, 0], // yellow
+  [154, 205, 50], // yellowGreen
+  [60, 179, 113], // mediumSeaGreen
+  [0, 128, 128], // teal
+  [70, 130, 180], // steelBlue
+  [0, 0, 255], // blue
+  [186, 85, 211], // mediumOrchid
+  [75, 0, 130], // indigo
+  [255, 255, 255], // white
+];
+
+let c, saveButton, thiccSlider;
 
 function setup() {
-  createCanvas(400, 400); 
+  c = createCanvas(600, 600);
+ 
+  saveButton = createButton("click me to save!");
+  saveButton.mousePressed(exportCanvas);
   
+  thiccSlider = createSlider(1,10,2,1);
+  
+}
 
+function makeSprites(){ // makes the paint selector sprites
+  
+}
+
+function changeColor(){ // changes the color when the sprite is selected
   
 }
 
 function draw() {
-  background(0);
-
-
-  
-  characters.forEach((character) => {
-    if (kb.pressing('d')) {
-      character.walkRight();
-    } 
-    else if (kb.pressing('a')) {
-      character.walkLeft();
-    } 
-    else if (kb.pressing('w')) {
-      character.walkUp();
-    }
-    else if (kb.pressing('s')) {
-      character.walkDown();
-    }
-    else {
-      character.stop();
-    }
-
-     if (character.sprite.x + character.sprite.width/4 > width) {
-       character.walkLeft();
-     } else if (character.sprite.x - character.sprite.width/4 < 0) {
-       character.walkRight();
-     }
-  })
+  background(255); // white canvas
 }
 
-class Character {
-  constructor(x,y,width,height,spriteSheet,animations) {
-    this.sprite = new Sprite(x,y,width,height);
-    this.sprite.spriteSheet = spriteSheet;
-    this.sprite.collider = 'none';
-    this.sprite.anis.frameDelay = 8;
-    this.sprite.addAnis(animations);
-    this.sprite.changeAni('stand');
-  }
+function paint(){ // draws a colored line when the mouse is clicked and dragged on the canvas
+  
+}
 
-  stop() {
-    this.sprite.vel.x = 0;
-    this.sprite.vel.y = 0;
-    this.sprite.changeAni('stand');
-  }
-  
-  walkRight() {
-    this.sprite.changeAni('walkRight');
-    this.sprite.vel.x = 1;
-    this.sprite.scale.x = 1;
-    this.sprite.vel.y = 0;
-  }
-  
-  walkLeft() {
-    this.sprite.changeAni('walkRight');
-    this.sprite.vel.x = -1;
-    this.sprite.scale.x = -1;
-    this.sprite.vel.y = 0;
-  }
-  
-  walkUp() {
-    this.sprite.changeAni('walkUp');
-    this.sprite.vel.y = -1;
-    this.sprite.vel.x = 0;
-  }
-  
-  walkDown() {
-    this.sprite.changeAni('walkDown');
-    this.sprite.vel.y = 1;
-    this.sprite.vel.x = 0;
-  }
+function exportCanvas(){ // saves the canvas as a .jpg image when the button is clicked.
+  let thisImage = saveCanvas(c,'myPainting', 'jpg');
 }
 
 
-
-function keyTypedOld() {
-  switch(key) {
-    case 'd':
-      walkRight();
-      break;
-    case 'a':
-      walkLeft();
-      break;
-    case 'w':
-      
-      break;
-    case 's':
-      
-  }
-}
