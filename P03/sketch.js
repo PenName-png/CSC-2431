@@ -1,6 +1,6 @@
 // Paint App With Sprites and Audio
 // PDM: Game Design and Audio Programming
-// Code by Matthew A. Bardin [2023]
+// Code by   [2023]
 
 
 // This sketch is a function upgrade of the paint app project found here: https://pdm.lsupathways.org/2_graphics/2_paintapp/4_lesson_4/

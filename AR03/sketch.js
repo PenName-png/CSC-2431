@@ -3,7 +3,11 @@ let joyX = 0; joyY = 0, sw = 0;
 let connectButton;
 let circleX, circleY;
 let speed = 3;
-let ;
+let R;
+let B;
+let Y;
+let selectedColor;
+
 
 function setup() {
   port = createSerial();
@@ -22,6 +26,8 @@ if (usedPorts.length > 0) {
 
 function draw() {
   background(220);
+
+
   
   let str = port.readUntil("\n");
   let values = str.split(",")
@@ -55,13 +61,30 @@ function draw() {
     port.write(message);
   }
 
+  if(port.opened() && frameCount % 3 == 0) {
+    let pixel = get(circleX, circleY);
+    let message = `${pixel[0]} ${pixel[1]} ${pixel[2]}\n`;
+    port.write(message);
+  }
+
+
   stroke(0)
   if (sw == 1) {
-    fill("blue");
+    fill(selectColor);
+    storeItem(selectColor)
   }
   else {
     fill (255);
   }
+
+  fill(this.fill);
+  square(this.x,this.y,100);
+  fill(0);
+  circle(this.x+20,this.y+20,10);
+  circle(this.x+80,this.y+25,10);
+
+  stroke(0);
+  line(this.x+20, this.y+50, this.x+80, this.y+50);
 
   circle(circleX, circleY, 5)
 }
