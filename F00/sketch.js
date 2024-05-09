@@ -136,7 +136,7 @@ function setup() {
 
   success = color(0, 255, 0);
   fail = color(255, 0, 0);
-  normal = color(255, 0, 0);
+  normal = color(0, 0, 0);
   lastAttempt = normal; 
 
 
@@ -347,13 +347,13 @@ function gameDone() {
   fill (lastAttempt);
   rect(0,0,width,height);
   buh = color('black')
-  fill(buh)
+  fill(255,255,255)
   text("Time's Up!", 100,100);
   // print(txt1, txt2)
-  text (txt1, 50, 150);
-  text (txt2, 50, 200);
-  text (txt3, 50, 250);
-  text (txt4, 50, 300);
+  text (txt1, 100, 150);
+  text (txt2, 100, 200);
+  text (txt3, 100, 250);
+  text (txt4, 100, 300);
 
 
   // text("Press Space to Play Again.", 100, 200);

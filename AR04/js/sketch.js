@@ -17,6 +17,7 @@ let jCursorX, jCursorY;
 let portName = 'COM3';
 let faces;
 let white;
+let sequence1, square;
 
 
 
@@ -98,20 +99,40 @@ y = height / 2;
 connectButton = createButton("Connect");
 connectButton.mousePressed(connect);
 
+sequence1 = new Tone.Sequence (function (time,note){
+  square.triggerAttackRelease(note, 0.8); 
+}, melody, "4n");
+
+Tone.Transport.start(); 
+Tone.Transport.bpm.value = 100; 
+Tone.Transport.timeSignature = [3,4]; 
+
+seq = new Tone.Sequence(
+  function (time, note) {
+    bgMusic.triggerAttackRelease(note, 1);
+  },
+  melody,
+  "2n"
+);
+Tone.Transport.bpm.value = 120;
+Tone.Transport.start();
+
+seq.start();
+
   let usedPorts = usedSerialPorts();
 if (usedPorts.length > 0) {
   port.open(usedPorts[0], 57600);
 }
 
-  seq = new Tone.Sequence(
-    function (time, note) {
-      bgMusic.triggerAttackRelease(note, 1);
-    },
-    melody,
-    "2n"
-  );
+  // seq = new Tone.Sequence(
+  //   function (time, note) {
+  //     bgMusic.triggerAttackRelease(note, 1);
+  //   },
+  //   melody,
+  //   "2n"
+  // );
 
-  allChangers = new Group(); 
+  // allChangers = new Group(); 
 
 
   exportButton = createButton("click to save your masterpiece");
@@ -121,10 +142,17 @@ if (usedPorts.length > 0) {
   background(255); 
   // makeSprites(); 
 
-  Tone.Transport.bpm.value = 120;
-  Tone.Transport.start();
+  // Tone.Transport.bpm.value = 120;
+  // Tone.Transport.start();
 
-  seq.start();
+  // seq.start();
+
+
+  // frameRate(90);
+
+  port = createSerial();
+
+
 
   selectedColor = color('black');
 
@@ -174,93 +202,6 @@ function draw() {
     let pixel = get(circleX,circleY);
       let message = `${pixel[0]} ${pixel[1]} ${pixel[2]}\n`;
       port.write(message);}
-  
-
-  // if (sw == 1) {
-  //   if(joyX < 400){
-  //      if(joyY < 400 && joyY >= -400){
-  //         currentColor = colors[0];
-  //         } else if(joyY >= 50 && joyY < 100){
-  //               currentColor = colors[1];    
-  //                   }else if(joyY >= 100 && joyY < 150){
-  //                   currentColor = colors[2];
-  //                   }else if(joyY >= 150 && joyY < 200){
-  //                 currentColor = colors[3];  
-  //                   }else if(joyY >= 200 && joyY < 250){
-  //                   currentColor = colors[4];
-  //                   }else if(joyY >= 250 && joyY < 300){
-  //                   currentColor = colors[5];
-  //                   }else if(joyY >= 300 && joyY < 350){
-  //                   currentColor = colors[6];
-  //                   }else if(joyY >= 350 && joyY < 400){
-  //                   currentColor = colors[7];
-  //                   }
-                    
-
-
-  //      }
-  //     }       
-    
-      //  stroke(currentColor);
-      //  line(joyX, joyY, circleX, circleY);
-
-      // if(!isInFace) {
-      //   fill(currentColor)
-      // }
-      
-      // console.log("selected color is " + currentColor);
-      // }
-      // else {
-      //   fill(currentColor);
-      //   noStroke()
-      // }
-
-      // let isIntestSprite = false;
-      // for(let i=0;i < paintColors.length;i++) {
-      //   if(paintColors[i].contains(circleX,circleY)) {
-      //     currentColor = paintColors[i].fill;
-      //     isInFace = true;
-      //   }
-      // }
-    
-
-      // if(mouseIsPressed) {
-      //   if (mouseX >= x && mouseX <= x + size && mouseY >= y && mouseY <= y + size) {
-      //    fill(selectedColor);
-      //     noStroke();
-    
-      //    x += mouseX - pmouseX;
-      //    y += mouseY - pmouseY;
-      // }
-
-      // let pixel = get(circleX, circleY);
-      
-      // allChangers.forEach((e) => {
-      //   if (sw == (1)) {
-      //     if (e.pixel) {
-      //     // what to do when clicked
-      //       currentColor = e.color; // colors change here
-      //       testSprite.stroke = currentColor;
-      //     }
-      //   }
-      // });
-
-      // if(!isIntestSprite){
-      //   fill(currentColor)
-      // }
-
-
-      // if(port.opened() && frameCount % 3 == 0) {
-      //   let pixel = get(circleX, circleY);
-      //     if(sw == 1) {
-      //         if (pixel) {
-      //           get(currentColor);
-      //           storeItem(currentColor)
-      //           stroke(0);
-    
-      //               x += joyX;
-      //               y += joyY;
-      // }
  }
 
 
@@ -295,49 +236,6 @@ function draw() {
 
 
 
-// if(sw == 1) {
-//   if (circleX >= x && circleX <= x + size && circleY >= y && circleY <= y + size) {
-//    fill(selectedColor);
-//     noStroke();
-
-//    x += mouseX - pmouseX;
-//    y += mouseY - pmouseY;
-// }
-
-// let isInFace = false;
-// for(let i=0;i < faces.length;i++) {
-//   if(faces[i].contains(circleX,circleY)) {
-//     selectedColor = faces[i].fill;
-//     isInFace = true;
-//   }
-// }
-
-// if(!isInFace) {
-//   fill(selectedColor)
-// }
-
-// console.log("selected color is " + selectedColor);
-// }
-// else {
-//   fill(selectedColor);
-//   noStroke()
-// }
-// circle(x,y, size);
-// }
-
-
-//     paint();
-
-
-//       //  stroke(0);
-//       //  line(this.x+20, this.y+50, this.x+80, this.y+50);
-//       // fill(currentColor)
-//       //  circle(circleX, circleY, 5)
-
-//       //  console.log(joyX, joyY);
-      
-
-// }
 
 
 function paint() {
@@ -345,66 +243,24 @@ function paint() {
   stroke(selectedColor)
   fill(selectedColor);
   circle(circleX, circleY, 5)
-  // filt.resonance.value = map(joyX, 600, 0, -600, 1, 1);
-  // rev.decay = map(joyY, -100, 0, 100, 5, 1);
+
+  // filt.resonance.value = map(mouseX, 0, width, 0, 1, 1);
+  // rev.decay = map(mouseY, 0, height, 0, 5, 1);
   // pop();
 }
 
-// function changeBrush() {
-//   paintThic = thickSlider.value();
-//   strokeWeight(paintThic);
-// }
 
 function exportCanvas() {
   let thisImage = saveCanvas(c, "myPainting", "jpg");
 
-  rev.decay.value = 0.5;
-  filt.resonance.rampTo(0.5, 1);
-  del.delayTime.rampTo(0.5, 1);
+  // rev.decay.value = 0.5;
+  // filt.resonance.rampTo(0.5, 1);
+  // del.delayTime.rampTo(0.5, 1);
 
-  bgMusic.volume.rampTo(-100, 5);
-  multiplayer.volume.rampTo(-100, 2);
+  // bgMusic.volume.rampTo(-100, 5);
+  // multiplayer.volume.rampTo(-100, 2);
+
 }
-
-// function makeSprites() {
-//   testSprite = new Sprite(width / 2, height / 2, width - 5, height - 5);
-//   testSprite.collider = "static";
-//   testSprite.color = color(255, 255, 255, 0);
-//   testSprite.strokeWeight = 5;
-//   testSprite.stroke = color(currentColor);
-//   this.x = x;
-//   this.y = y;
-//   this.fill = fill;
-
-//   for (let i = 0; i < paintColors.length; i++) {
-//     push();
-
-//     let changer = new allChangers.Sprite();
-
-    
-
-//     if (i === 13) {
-//       changer.diameter = 35;
-//       changer.stroke = 0;
-//     } else {
-//       changer.diameter = 40;
-//       changer.stroke = 255;
-//     }
-
-    
-//     changer.x = palletePos;
-//     changer.y = i * 50 + 50;
-//     changer.strokeWeight = 2;
-//     changer.collider = "static";
-//     allChangers[i].color = color(paintColors[i]);
-//     pop();
-
-//     // let insideX = x >= this.x && x <= this.x+100;
-//     // let insideY = y >= this.y && y <= this.y+100;
-//     // return insideX && insideY;
-//   }
-
-// }
 
 class Face {
   constructor(x,y, fill) {
@@ -428,22 +284,20 @@ class Face {
     return insideX && insideY;
   }
 }
-
-
 // function mousePressed() {
-//   let mJoyX = map(joyX, -512, 512, 0, 1, 1);
-//   let mJoyY = map(joyY, -512, 512, 0, 1, 1);
+//   let mMouseX = map(mouseX, 0, width, 0, 1, 1);
+//   let mMouseY = map(mouseY, 0, height, 0, 1, 1);
 
-//   del.delayTime.rampTo(mJoyY, 3);
+//   del.delayTime.rampTo(mMouseY, 3);
 
-//   if (allChangers.mouse.sw == 1) {
+//   if (allChangers.mouse.pressing()) {
 //     multiplayer.player("select").start();
 //   }
 
 
 
-//   if (circleX > 80 && circleY < width - 5) {
-//     if (circleY > 5 && circleY < height - 15) {
+//   if (mouseX > 80 && mouseX < width - 5) {
+//     if (mouseY > 5 && mouseY < height - 15) {
 //       if (currentColor === allChangers[13].color) {
 //         multiplayer.player("erase").volume.value = -12;
 //         multiplayer.player("erase").loop = true;
@@ -458,12 +312,6 @@ class Face {
 //       }
 //     }
 //   }
-// }
-
-// function mouseReleased() {
-//   multiplayer.player("paintFX").stop();
-//   multiplayer.player("erase").stop();
-//   del.feedback.rampTo(0.9, 3);
 // }
 
 function connect() {
