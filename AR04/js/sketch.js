@@ -170,6 +170,12 @@ function draw() {
     }
   }
 
+  if(port.opened() && frameCount % 3 == 0) {
+    let pixel = get(circleX,circleY);
+      let message = `${pixel[0]} ${pixel[1]} ${pixel[2]}\n`;
+      port.write(message);}
+  
+
   // if (sw == 1) {
   //   if(joyX < 400){
   //      if(joyY < 400 && joyY >= -400){
