@@ -38,7 +38,7 @@ Andrew Webb and Erin Demastes
 
 	when the player clicks their mouse, it will enter the Play mode, where the game maps the potentiometer to a value and subtracts that value against the random value selected beforehand. The value outputted by the equation is then multiplied by the power of 2; this creates the effect that causes the image to "fall" out of focus. 
 
-	Once the timer finishes, the game checks whether the value is over or under 1. If it is under 1, it displays a green background and a victory message, and the Arduino reads the background to turn the RGB LED green. If it is over 1, it displays a red background and a failure message, and the Arduino reads the background to turn the RGB LED red. 
+	Once the timer finishes, the game checks whether the value is over or under 1. If it is under 1, it displays a green background and a victory message, and the Arduino reads the background to turn the RGB LED green. If it is over 1, it displays a red background and a failure message, and the Arduino reads the background to turn the RGB LED will stay white. 
 
 *Future Developments*
 
