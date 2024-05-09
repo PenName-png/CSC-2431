@@ -1,0 +1,50 @@
+Focus Puller.
+
+Alex Matus
+
+CSC 2463 sct.1
+
+Andrew Webb and Erin Demastes
+
+5/8/2024
+
+*Directors Note*
+
+	Focus Puller came out of the stressful yet enjoyable time I had filming this semester with one of my Prof. The Scrn Arts department is currently in the process of making a feature-length film, which has put a lot of strain on everyone in our department. We have to be camera operators, sound engineers, editors, storyboard artists, and make-up artists, all without time to properly acclimate to the roles and jobs we have taken on. The best way of learning something is by doing, but the intense struggle has been rough, and there is still more work to be done.
+
+	Here, I turned that pain into art, which ended up still being a pain. I love my code, but just like directing, I was sorely unprepared to do all these assignments. So I did what I could, and what I made while not the full scope of what I planned, is the best I could do
+
+*The Story*
+
+	Focus Puller tells the story of a young stagehand being thrown into the stressful job of pulling scenes into focus. Due to how demanding and tough the director is, the last focus puller, and they need a guy to do it, or they'll lose a day of filming and fall behind schedule. He knows this could be a big break for him, so he takes it on, not knowing that he may or may not have a job by the end of the day.
+
+*How to play*
+
+	1) check that your potentiometer is set correctly by putting it all the way to the left
+
+	2) To start click on your mouse
+
+	3) The game will display an image and have a timer of 15 secs
+
+	4) By using the potentiometer you will change the plane of focus and make the image clearer
+
+	5) be careful to not move the potentiometer too far or it will fall out of focus 
+
+	6) When the timer finishes, the player will know whether they have done a successful job.
+
+*How the game works Mechanically*
+
+	The game works by getting 2 sets of random values. One grabs which image will be displayed during the play state the other chooses how bad the blur will be on the image. It also reads the color of the image as white, displaying a white LED. A melody starts playing at the Start, and when the mouse is clicked it plays the same melody except with a different ADSR
+
+	when the player clicks their mouse, it will enter the Play mode, where the game maps the potentiometer to a value and subtracts that value against the random value selected beforehand. The value outputted by the equation is then multiplied by the power of 2; this creates the effect that causes the image to "fall" out of focus. 
+
+	Once the timer finishes, the game checks whether the value is over or under 1. If it is under 1, it displays a green background and a victory message, and the Arduino reads the background to turn the RGB LED green. If it is over 1, it displays a red background and a failure message, and the Arduino reads the background to turn the RGB LED red. 
+
+*Future Developments*
+
+	I don't really plan on doing much with this specific project. there are features missing but everything I have done is what I can do for the time being. If I were to do it again, and not in this class I would not use the Arduino but have it track the mouse. 
+
+	For the sake of imagining, it would be cool for it to take pictures and pictures of a 3D plane. I've seen P5 have 3D models, and they look really cool. There is stuff that I think would be fun to do within coding and video games, but I don't think Java is the way to go with that sort of thing. I would rather do something in a fun game engine. 
+
+
+
